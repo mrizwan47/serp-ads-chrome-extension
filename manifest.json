@@ -1,0 +1,14 @@
+{
+	"name": "SERP Ads",
+	"description": "Extract Domains of Ads found on SERP",
+	"version": "1.0",
+	"manifest_version": 3,
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+	"action": {
+		"default_title": "SERP Ads"
+	}
+}
+  
