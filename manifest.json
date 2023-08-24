@@ -2,6 +2,7 @@
 	"name": "SERP Ads",
 	"description": "Extract Domains of Ads found on SERP",
 	"version": "1.0",
+	"author": "hi@iamrizwan.me",  
 	"manifest_version": 3,
 	"permissions": ["storage", "contextMenus", "activeTab", "scripting"],
 	"host_permissions": [
