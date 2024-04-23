@@ -1,10 +1,10 @@
-### SERP Ads Chrome Extension
+# SERP Ads Chrome Extension
 
 Extracts domains of ads found on search engine results pages (SERPs).
 
 ---
 
-### Functionality
+## Functionality
 
 The SERP Ads Chrome extension allows users to scrape and save domains of ads found on SERPs. It provides the following features:
 
