@@ -66,12 +66,36 @@ scrape_and_append.addEventListener("click", async () => {
 						ads_array = [];
 					}
 			
+					// Get the search query value from the hidden input
+					var query = document.querySelector('input[name="q"]').value;
+
+					// Track domains we've already seen to avoid duplicates
+					var seenDomains = new Set();
+					
 					var ads = document.getElementsByClassName('uEierd');
 					for( i in ads ){
 						if( ads.hasOwnProperty(i) ){
-							ads_array.push([
-								ads[i].getElementsByClassName('d8lRkd')[0].getElementsByTagName('span')[2].dataset.dtld
-							]);
+							try {
+								// Get the domain
+								var domain = ads[i].getElementsByClassName('d8lRkd')[0].getElementsByTagName('span')[7].dataset.dtld;
+								
+								// Skip if domain is undefined or already seen
+								if (!domain || seenDomains.has(domain)) {
+									continue;
+								}
+								
+								// Add to seen domains set
+								seenDomains.add(domain);
+								
+								// Add to results array
+								ads_array.push([
+									query, // Include the search query as the first column
+									domain
+								]);
+							} catch (e) {
+								// Skip this item if there's any error accessing the domain
+								console.log('Error processing ad:', e);
+							}
 						}
 					}
 			
@@ -111,7 +135,7 @@ download_csv.addEventListener("click", async () => {
 					let csvContent = "data:text/csv;charset=utf-8," + ads_array.map(e => e.join(",")).join("\n");
 			
 					var encodedUri = encodeURI(csvContent);
-					var query = document.querySelector('input[name="q"').value.toLowerCase();
+					var query = document.querySelector('input[name="q"]').value.toLowerCase();
 					var link = document.createElement("a");
 					link.setAttribute("href", encodedUri);
 					link.setAttribute("download", query+"-ads.csv");
